@@ -4,7 +4,7 @@ Marketing site for *The Parent's Playbook* by Makarand Bhatt: static frontend pl
 
 **Repository:** [github.com/akshayamin62/Parents_Playbook](https://github.com/akshayamin62/Parents_Playbook)  
 **Live site:** [http://kareerstudio.com/mydreams/](http://kareerstudio.com/mydreams/)  
-**API (production):** `https://api.kareerstudio.com` (Node on VPS port **5017** behind Nginx)
+**API (production):** `https://parents-playbook-api.kareerstudio.com` (Node on VPS port **5017** behind Nginx)
 
 ## Architecture
 

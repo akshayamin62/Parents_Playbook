@@ -50,12 +50,12 @@ pm2 startup
 
 ## 4. Nginx reverse proxy (example)
 
-Point `api.kareerstudio.com` to this app (port `5017` on VPS):
+Point `parents-playbook-api.kareerstudio.com` to this app (port `5017` on VPS):
 
 ```nginx
 server {
     listen 443 ssl http2;
-    server_name api.kareerstudio.com;
+    server_name parents-playbook-api.kareerstudio.com;
 
     # ssl_certificate ... (Certbot)
 
@@ -70,14 +70,14 @@ server {
 }
 ```
 
-Then issue TLS: `certbot --nginx -d api.kareerstudio.com`
+Then issue TLS: `certbot --nginx -d parents-playbook-api.kareerstudio.com`
 
 ## 5. Frontend
 
 In `index.html`, set `PLAYBOOK_API_BASE` to your public API URL, e.g.:
 
 ```js
-const PLAYBOOK_API_BASE = "https://api.kareerstudio.com";
+const PLAYBOOK_API_BASE = "https://parents-playbook-api.kareerstudio.com";
 ```
 
 Requests go to `POST .../free-preview` and `POST .../enquiry`.
