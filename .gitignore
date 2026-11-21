@@ -9,7 +9,7 @@ node_modules/
 backend/node_modules/
 
 # PDF only on VPS (copy manually); keep root copy optional in repo
-backend/assets/free-preview.pdf
+# backend/assets/free-preview.pdf
 
 # Logs & runtime
 logs/

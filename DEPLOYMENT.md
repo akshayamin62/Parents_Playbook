@@ -1,9 +1,11 @@
 # Deployment guide — Shared hosting + VPS
 
+**Repository:** [github.com/akshayamin62/Parents_Playbook](https://github.com/akshayamin62/Parents_Playbook)
+
 This project runs in two places:
 
-1. **Frontend** on Hostinger **shared** → `https://www.kareerstudio.com/mydreams/`
-2. **Backend** on Hostinger **VPS** → e.g. `https://api.kareerstudio.com`
+1. **Frontend** on Hostinger **shared** → [http://kareerstudio.com/mydreams/](http://kareerstudio.com/mydreams/)
+2. **Backend** on Hostinger **VPS** → e.g. `https://api.kareerstudio.com` (Node listens on **port `5017`**)
 
 ---
 
@@ -13,11 +15,11 @@ This project runs in two places:
 [Visitor browser]
        │
        ▼
-www.kareerstudio.com/mydreams/     (static HTML, shared hosting)
+kareerstudio.com/mydreams/         (static HTML, shared hosting)
        │
-       │  fetch POST /free-preview, POST /enquiry  (HTTPS + CORS)
+       │  fetch POST /free-preview, POST /enquiry  (HTTPS API + CORS)
        ▼
-api.kareerstudio.com               (Nginx → Node :3847, VPS)
+api.kareerstudio.com               (Nginx → Node :5017, VPS)
        │
        ├── SMTP (Gmail App Password)
        ├── Email PDF to user
@@ -30,7 +32,7 @@ api.kareerstudio.com               (Nginx → Node :3847, VPS)
 
 - Domain DNS managed in Hostinger (or your registrar pointed to Hostinger).
 - **Shared hosting** account with File Manager or FTP for `kareerstudio.com`.
-- **VPS** with Ubuntu (or similar), root/sudo, ports 80/443 open.
+- **VPS** with Ubuntu (or similar), root/sudo; ports **80/443** (Nginx) and **5017** (Node, local only).
 - Gmail account for sending (e.g. `kareerstudio@gmail.com`) with **2-Step Verification** and an **App Password**.
 - SSL on the API subdomain (Let’s Encrypt via Certbot).
 
@@ -48,27 +50,21 @@ In Hostinger → **DNS**:
 
 Wait for propagation (minutes to a few hours).
 
-### A2. Upload code on the VPS
+### A2. Clone from GitHub
 
 SSH into the VPS, then:
 
 ```bash
-sudo mkdir -p /var/www/parents-playbook-api
-sudo chown $USER:$USER /var/www/parents-playbook-api
-cd /var/www/parents-playbook-api
+cd ~
+git clone https://github.com/akshayamin62/Parents_Playbook.git
+cd Parents_Playbook/backend
 ```
 
-Upload the `backend/` folder contents here (Git clone, `scp`, or SFTP). **Do not** upload `node_modules` or `.env`.
-
-```bash
-git clone <your-github-repo-url> /tmp/playbook
-cp -r /tmp/playbook/backend/* /var/www/parents-playbook-api/
-```
+**Do not** commit or push `backend/.env` — create it only on the server.
 
 Install dependencies:
 
 ```bash
-cd /var/www/parents-playbook-api
 npm install --omit=dev
 ```
 
@@ -77,7 +73,7 @@ npm install --omit=dev
 The preview PDF must exist on the VPS (not on shared hosting as a public file):
 
 ```bash
-cp /path/to/free-preview.pdf ./assets/free-preview.pdf
+cp ../free-preview.pdf ./assets/free-preview.pdf
 chmod 644 ./assets/free-preview.pdf
 ```
 
@@ -88,13 +84,14 @@ cp .env.example .env
 nano .env
 ```
 
-Example production values:
+Example **production** values:
 
 ```env
-PORT=3847
+PORT=5017
 NODE_ENV=production
 
-CORS_ORIGINS=https://www.kareerstudio.com,https://kareerstudio.com
+# Exact origins the browser sends (no trailing slash). Include http + https, www + non-www.
+CORS_ORIGINS=http://kareerstudio.com,http://www.kareerstudio.com,https://kareerstudio.com,https://www.kareerstudio.com
 
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=465
@@ -117,6 +114,8 @@ npm run verify-smtp
 
 ### A5. Run with PM2
 
+From `~/Parents_Playbook/backend`:
+
 ```bash
 sudo npm install -g pm2
 pm2 start server.js --name playbook-api
@@ -130,7 +129,7 @@ Check logs:
 
 ```bash
 pm2 logs playbook-api
-curl http://127.0.0.1:3847/health
+curl http://127.0.0.1:5017/health
 ```
 
 ### A6. Nginx reverse proxy
@@ -148,7 +147,7 @@ server {
     server_name api.kareerstudio.com;
 
     location / {
-        proxy_pass http://127.0.0.1:3847;
+        proxy_pass http://127.0.0.1:5017;
         proxy_http_version 1.1;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -176,8 +175,9 @@ curl https://api.kareerstudio.com/health
 ### A7. Updates (redeploy API)
 
 ```bash
-cd /var/www/parents-playbook-api
-git pull   # or re-upload changed files
+cd ~/Parents_Playbook
+git pull origin main
+cd backend
 npm install --omit=dev
 pm2 restart playbook-api
 ```
@@ -188,17 +188,17 @@ pm2 restart playbook-api
 
 ### B1. Folder on server
 
-In Hostinger **File Manager** (or FTP), open the site root (often `public_html`) and create:
+In Hostinger **File Manager** (or FTP), open the site root (often `public_html`) and use:
 
 ```
 public_html/mydreams/
 ```
 
-This maps to `https://www.kareerstudio.com/mydreams/`.
+Live URL: [http://kareerstudio.com/mydreams/](http://kareerstudio.com/mydreams/)
 
 ### B2. Files to upload
 
-Upload **only**:
+From your clone (or download from GitHub), upload **only**:
 
 | File | Required |
 |------|----------|
@@ -219,7 +219,7 @@ Optional: rename `mydreams.htaccess.example` → `.htaccess` and upload to block
 
 ### B3. API URL in `index.html`
 
-Production uses the API subdomain automatically when **not** on localhost:
+Production uses the API subdomain when **not** on localhost:
 
 ```js
 const PLAYBOOK_API_BASE =
@@ -228,17 +228,17 @@ const PLAYBOOK_API_BASE =
     : "https://api.kareerstudio.com";
 ```
 
-If your API hostname differs, change the production string before uploading.
+An **HTTP** landing page calling an **HTTPS** API is allowed in browsers. If your API hostname differs, change the production string before uploading.
 
 ### B4. Verify in browser
 
-1. Open `https://www.kareerstudio.com/mydreams/`
+1. Open [http://kareerstudio.com/mydreams/](http://kareerstudio.com/mydreams/)
 2. Submit **free preview** form (use your real email).
 3. Submit **enquiry** from “Three ways to begin”.
 4. Check inbox + `NOTIFY_EMAIL`.
 
 If the form fails with CORS or network errors, confirm `CORS_ORIGINS` on the VPS includes  
-`https://www.kareerstudio.com` and restart PM2.
+`http://kareerstudio.com` (and other variants above), then `pm2 restart playbook-api`.
 
 ---
 
@@ -247,12 +247,14 @@ If the form fails with CORS or network errors, confirm `CORS_ORIGINS` on the VPS
 | Check | Action |
 |-------|--------|
 | API health | `curl https://api.kareerstudio.com/health` → `{"ok":true}` |
-| SMTP | `npm run verify-smtp` on VPS |
-| CORS | `CORS_ORIGINS` has exact site origins (no trailing slash) |
-| PDF | Present at `backend/assets/free-preview.pdf` on VPS only |
-| Public PDF | Not listed under `/mydreams/` on shared hosting |
-| SSL | Both `www` and `api` serve HTTPS |
+| Node port | `curl http://127.0.0.1:5017/health` on VPS |
+| SMTP | `npm run verify-smtp` in `backend/` |
+| CORS | `CORS_ORIGINS` lists all live site origins (no trailing slash) |
+| PDF | `~/Parents_Playbook/backend/assets/free-preview.pdf` on VPS only |
+| Public PDF | Not under `public_html/mydreams/` on shared hosting |
+| SSL | API at `https://api.kareerstudio.com` |
 | PM2 | `pm2 status` shows `online` after reboot |
+| Firewall | Port **5017** only on localhost (Nginx public); do not expose 5017 to the internet unless intended |
 
 ---
 
@@ -262,31 +264,32 @@ If the form fails with CORS or network errors, confirm `CORS_ORIGINS` on the VPS
 
 - Use a **Google App Password** on the **same** account as `SMTP_USER`.
 - `MAIL_FROM` must use that same address.
-- College / Workspace student accounts often block SMTP — use `kareerstudio@gmail.com` for production.
 - Run `npm run verify-smtp` on the VPS.
 
 ### `Origin not allowed` / CORS
 
-- Add `https://www.kareerstudio.com` to `CORS_ORIGINS`.
-- Include `https://kareerstudio.com` if users visit without `www`.
-- Restart the API after editing `.env`.
+- Add the exact origin from DevTools → Network (e.g. `http://kareerstudio.com`).
+- Include `http://` and `https://`, with and without `www`.
+- Restart PM2 after editing `.env`.
 
 ### Preview error: PDF missing
 
-- Copy `free-preview.pdf` to `assets/` on the VPS.
-- Check `PDF_PATH` in `.env`.
+```bash
+cp ~/Parents_Playbook/free-preview.pdf ~/Parents_Playbook/backend/assets/free-preview.pdf
+```
 
 ### Form works locally but not in production
 
 - Confirm `api.kareerstudio.com` resolves to the VPS.
-- Check browser DevTools → Network for blocked mixed content (page must be HTTPS; API must be HTTPS).
+- Confirm Nginx `proxy_pass` points to **5017** and `PORT=5017` in `.env`.
+- Check `pm2 logs playbook-api` for errors.
 
 ---
 
-## GitHub workflow (optional)
+## GitHub workflow
 
-1. Push this repo to GitHub (`.env` is gitignored).
-2. On VPS: `git clone` and pull updates; never commit secrets.
-3. On shared hosting: upload changed static files via File Manager/FTP or a deploy script.
+1. Develop locally; push to [Parents_Playbook](https://github.com/akshayamin62/Parents_Playbook) (`.env` stays gitignored).
+2. On VPS: `git pull` under `~/Parents_Playbook`, then `pm2 restart playbook-api` from `backend/`.
+3. On shared hosting: upload changed static files when `index.html` or assets change.
 
 For local development, see [README.md](./README.md).

@@ -50,7 +50,7 @@ pm2 startup
 
 ## 4. Nginx reverse proxy (example)
 
-Point `api.kareerstudio.com` to this app (port `3847`):
+Point `api.kareerstudio.com` to this app (port `5017` on VPS):
 
 ```nginx
 server {
@@ -60,7 +60,7 @@ server {
     # ssl_certificate ... (Certbot)
 
     location / {
-        proxy_pass http://127.0.0.1:3847;
+        proxy_pass http://127.0.0.1:5017;
         proxy_http_version 1.1;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
