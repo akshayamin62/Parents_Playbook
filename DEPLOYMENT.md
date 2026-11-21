@@ -241,28 +241,33 @@ public_html/mydreams/
 
 Live URL: [http://kareerstudio.com/mydreams/](http://kareerstudio.com/mydreams/)
 
-### B2. Files to upload
+### B2. Upload the `frontend/` folder
 
-From your clone (or download from GitHub), upload **only**:
+In your GitHub clone on your PC, open:
+
+```
+Parents_Playbook/frontend/
+```
+
+**Select all files** in that folder and upload them into `public_html/mydreams/` on shared hosting:
 
 | File | Required |
 |------|----------|
 | `index.html` | Yes |
 | `author.webp` | Yes |
 | `book-cover.png` | Yes |
+| `privacy-policy.html` | Yes |
+| `disclaimer.html` | Yes |
+| `legal.css` | Yes |
 | `.htaccess` | Recommended |
 
-**Do not upload** `free-preview.pdf` to `mydreams/` if you want email-only access.
+Short guide: [frontend/README.md](./frontend/README.md)
 
-Optional: rename `mydreams.htaccess.example` → `.htaccess` and upload to block accidental PDF access:
+**Do not upload** `free-preview.pdf` into `mydreams/` (preview is emailed from the VPS).
 
-```apache
-<Files "free-preview.pdf">
-  Require all denied
-</Files>
-```
+**Tip:** Zip the `frontend` folder on your PC, upload the zip to `mydreams/`, then **Extract** in Hostinger File Manager.
 
-### B3. API URL in `index.html`
+### B3. API URL in `frontend/index.html`
 
 Production uses the API subdomain when **not** on localhost:
 
@@ -369,6 +374,6 @@ Let's Encrypt cannot find your subdomain in public DNS. Nginx on the VPS is fine
 
 1. Develop locally; push to [Parents_Playbook](https://github.com/akshayamin62/Parents_Playbook) (`.env` stays gitignored).
 2. On VPS: `git pull` under `~/Parents_Playbook`, then `pm2 restart parents-playbook-api` from `backend/`.
-3. On shared hosting: upload changed static files when `index.html` or assets change.
+3. On shared hosting: re-upload changed files from `frontend/` when the site changes.
 
 For local development, see [README.md](./README.md).

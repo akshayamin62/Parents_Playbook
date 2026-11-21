@@ -480,6 +480,33 @@
         display: flex;
         justify-content: space-between;
         gap: 25px;
+        flex-wrap: wrap;
+      }
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 14px;
+        align-items: center;
+      }
+      .footer-links a {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .footer-links a:hover {
+        color: var(--rust);
+      }
+      .footer-contact {
+        margin: 14px 0 0;
+        font-size: 13px;
+        color: #dce4ec;
+      }
+      .footer-contact a {
+        color: #fff;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .footer-contact a:hover {
+        color: var(--rust);
       }
       .modal {
         display: none;
@@ -791,7 +818,7 @@
               </ul>
               <div class="bottom">
                 <div class="price">
-                  ₹399 <small>proposed digital price</small>
+                  ₹499 <small>proposed digital price</small>
                 </div>
                 <button
                   class="button secondary"
@@ -1015,14 +1042,22 @@
       </section>
     </main>
     <footer>
-      <div class="container footer-flex">
-        <div>
-          © <span id="yr"></span> Makarand Bhatt · The Parent's Playbook
+      <div class="container">
+        <div class="footer-flex">
+          <div>
+            © <span id="yr"></span> Makarand Bhatt · The Parent's Playbook
+          </div>
+          <div class="footer-links">
+            Educational guidance, not a substitute for individual psychological
+            assessment.
+            <a href="privacy-policy.html">Privacy policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+          </div>
         </div>
-        <div>
-          Educational guidance, not a substitute for individual psychological
-          assessment. · <a href="mailto:hello@kareerstudio.com">Contact</a>
-        </div>
+        <p class="footer-contact">
+          Contact: Makarand Bhatt &nbsp;|&nbsp;
+          <a href="mailto:hello@kareerstudio.com">hello@kareerstudio.com</a>
+        </p>
       </div>
     </footer>
     <div

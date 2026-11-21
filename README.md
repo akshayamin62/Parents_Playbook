@@ -18,11 +18,15 @@ The landing page calls the API over HTTPS with CORS.
 ## Repository layout
 
 ```
-├── index.html              # Landing page + modals + API client
-├── author.webp
-├── book-cover.png
-├── free-preview.pdf        # Source PDF (copy to VPS backend/assets only)
-├── mydreams.htaccess.example
+├── frontend/               # Upload entire folder → public_html/mydreams/
+│   ├── index.html
+│   ├── author.webp
+│   ├── book-cover.png
+│   ├── privacy-policy.html
+│   ├── disclaimer.html
+│   ├── legal.css
+│   └── .htaccess
+├── free-preview.pdf        # Copy to VPS backend/assets only (not shared hosting)
 ├── DEPLOYMENT.md           # Full production setup (shared + VPS)
 └── backend/
     ├── server.js           # POST /free-preview, POST /enquiry, GET /health
@@ -55,10 +59,10 @@ npm run dev
 ### 2. Frontend
 
 ```bash
-npx serve -l 5500
+npx serve frontend -l 5500
 ```
 
-Open `http://localhost:5500`. On localhost, `index.html` uses `http://localhost:3847` for the API.
+Open `http://localhost:5500`. On localhost, the page uses `http://localhost:3847` for the API.
 
 ## Production deployment
 
