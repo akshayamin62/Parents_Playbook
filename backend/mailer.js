@@ -113,7 +113,7 @@ export async function sendPreviewEmails({ name, email, phone, city }) {
   });
 }
 
-export async function sendEnquiryNotification({ interest, name, email, message }) {
+export async function sendEnquiryNotification({ interest, name, phone, email, message }) {
   const from = resolveMailFrom();
   const notifyTo = process.env.NOTIFY_EMAIL || "hello@kareerstudio.com";
   const contactEmail =
@@ -123,6 +123,7 @@ export async function sendEnquiryNotification({ interest, name, email, message }
   const safe = {
     interest: escapeForHtml(interest),
     name: escapeForHtml(name),
+    phone: escapeForHtml(phone),
     email: escapeForHtml(email),
     message: escapeForHtml(message),
   };
@@ -139,6 +140,7 @@ export async function sendEnquiryNotification({ interest, name, email, message }
       <ul>
         <li><strong>Interested in:</strong> ${safe.interest}</li>
         <li><strong>Name:</strong> ${safe.name}</li>
+        <li><strong>Mobile:</strong> ${safe.phone}</li>
         <li><strong>Email:</strong> <a href="mailto:${safe.email}">${safe.email}</a></li>
       </ul>
       <p><strong>Message:</strong></p>
@@ -149,6 +151,7 @@ export async function sendEnquiryNotification({ interest, name, email, message }
       "",
       `Interested in: ${interest}`,
       `Name: ${name}`,
+      `Mobile: ${phone}`,
       `Email: ${email}`,
       "",
       "Message:",

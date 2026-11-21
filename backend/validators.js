@@ -58,6 +58,7 @@ export function validateEnquiryRequest(body) {
 
   const interest = String(body.interest ?? "").trim();
   const name = String(body.name ?? "").trim();
+  const phone = String(body.phone ?? "").trim();
   const email = String(body.email ?? "").trim();
   const message = String(body.message ?? "").trim();
 
@@ -66,6 +67,12 @@ export function validateEnquiryRequest(body) {
   }
   if (!name || name.length > LIMITS.name) {
     return { ok: false, error: "Please enter your name (up to 100 characters)." };
+  }
+  if (!phone || phone.length > LIMITS.phone) {
+    return { ok: false, error: "Please enter your mobile number." };
+  }
+  if (!/^[+()\d\s.-]{7,20}$/.test(phone)) {
+    return { ok: false, error: "Please enter a valid mobile number." };
   }
   if (!email || !validator.isEmail(email) || email.length > LIMITS.email) {
     return { ok: false, error: "Please enter a valid email address." };
@@ -84,6 +91,7 @@ export function validateEnquiryRequest(body) {
     data: {
       interest,
       name,
+      phone,
       email: normalizedEmail,
       message: message || "Please send me the details.",
     },

@@ -581,6 +581,29 @@
       .formstatus.success {
         color: #2d5a3d;
       }
+      .modal-form-view.hidden {
+        display: none;
+      }
+      .form-thanks {
+        display: none;
+        text-align: center;
+        padding: 8px 4px 4px;
+      }
+      .form-thanks.show {
+        display: block;
+      }
+      .form-thanks h3 {
+        font-size: 34px;
+        margin: 0 0 16px;
+      }
+      .form-thanks p {
+        font-size: 16px;
+        color: var(--sub);
+        margin: 0 0 22px;
+      }
+      .form-thanks .button {
+        min-width: 140px;
+      }
       .formrow input:disabled,
       .button:disabled {
         opacity: 0.65;
@@ -1069,6 +1092,7 @@
     >
       <div class="dialog">
         <button class="x" onclick="closePreview()" aria-label="Close">×</button>
+        <div id="previewFormView" class="modal-form-view">
         <div class="eyebrow">14-page review edition</div>
         <h3 id="previewTitle">Get your free preview</h3>
         <p style="font-size: 14px; color: var(--sub)">
@@ -1129,6 +1153,15 @@
           We use your details to send the preview and may follow up about the
           playbook. See our contact page for questions.
         </p>
+        </div>
+        <div id="previewThankYou" class="form-thanks" role="status" aria-live="polite">
+          <div class="eyebrow">Thank you</div>
+          <h3>Preview on its way</h3>
+          <p id="previewThankYouMessage">
+            We have emailed the free preview to your inbox. Please check spam if you do not see it within a few minutes.
+          </p>
+          <button type="button" class="button" onclick="closePreview()">Close</button>
+        </div>
       </div>
     </div>
     <div
@@ -1140,6 +1173,7 @@
     >
       <div class="dialog">
         <button class="x" onclick="closeEnquiry()" aria-label="Close">×</button>
+        <div id="enquiryFormView" class="modal-form-view">
         <div class="eyebrow">Contact the author’s team</div>
         <h3 id="dialogTitle">Make an enquiry</h3>
         <p style="font-size: 14px; color: var(--sub)">
@@ -1159,6 +1193,17 @@
           <div class="formrow">
             <label for="name">Your name</label
             ><input id="name" required autocomplete="name" maxlength="100" />
+          </div>
+          <div class="formrow">
+            <label for="enquiryPhone">Mobile number</label>
+            <input
+              id="enquiryPhone"
+              type="tel"
+              required
+              autocomplete="tel"
+              maxlength="20"
+              placeholder="e.g. +91 98765 43210"
+            />
           </div>
           <div class="formrow">
             <label for="email">Your email</label
@@ -1188,6 +1233,15 @@
             Send enquiry ↗
           </button>
         </form>
+        </div>
+        <div id="enquiryThankYou" class="form-thanks" role="status" aria-live="polite">
+          <div class="eyebrow">Thank you</div>
+          <h3>Enquiry received</h3>
+          <p id="enquiryThankYouMessage">
+            We have received your enquiry and will reply to you by email soon.
+          </p>
+          <button type="button" class="button" onclick="closeEnquiry()">Close</button>
+        </div>
       </div>
     </div>
     <script>
@@ -1198,14 +1252,27 @@
 
       document.getElementById("yr").textContent = new Date().getFullYear();
 
+      function showPreviewForm() {
+        document.getElementById("previewFormView").classList.remove("hidden");
+        document.getElementById("previewThankYou").classList.remove("show");
+      }
+      function showPreviewThankYou(message) {
+        document.getElementById("previewThankYouMessage").textContent = message;
+        document.getElementById("previewFormView").classList.add("hidden");
+        document.getElementById("previewThankYou").classList.add("show");
+      }
       function openPreview() {
         closeEnquiry();
+        showPreviewForm();
         document.getElementById("previewModal").classList.add("open");
         clearPreviewStatus();
         document.getElementById("previewName").focus();
       }
       function closePreview() {
         document.getElementById("previewModal").classList.remove("open");
+        document.getElementById("previewForm").reset();
+        showPreviewForm();
+        clearPreviewStatus();
       }
       function clearPreviewStatus() {
         const el = document.getElementById("previewStatus");
@@ -1244,9 +1311,9 @@
             setPreviewStatus(data.error || "Something went wrong. Please try again.", "error");
             return;
           }
-          setPreviewStatus(
-            data.message || "Preview sent. Please check your inbox.",
-            "success"
+          showPreviewThankYou(
+            data.message ||
+              "We have emailed the free preview to your inbox. Please check spam if you do not see it within a few minutes."
           );
           document.getElementById("previewForm").reset();
         } catch {
@@ -1259,8 +1326,18 @@
         }
       });
 
+      function showEnquiryForm() {
+        document.getElementById("enquiryFormView").classList.remove("hidden");
+        document.getElementById("enquiryThankYou").classList.remove("show");
+      }
+      function showEnquiryThankYou(message) {
+        document.getElementById("enquiryThankYouMessage").textContent = message;
+        document.getElementById("enquiryFormView").classList.add("hidden");
+        document.getElementById("enquiryThankYou").classList.add("show");
+      }
       function openEnquiry(item) {
         closePreview();
+        showEnquiryForm();
         clearEnquiryStatus();
         document.getElementById("interest").value = item;
         document.getElementById("enquiry").classList.add("open");
@@ -1268,6 +1345,9 @@
       }
       function closeEnquiry() {
         document.getElementById("enquiry").classList.remove("open");
+        document.getElementById("enquiryForm").reset();
+        showEnquiryForm();
+        clearEnquiryStatus();
       }
       function clearEnquiryStatus() {
         const el = document.getElementById("enquiryStatus");
@@ -1295,6 +1375,7 @@
         const payload = {
           interest: val("interest"),
           name: val("name"),
+          phone: val("enquiryPhone"),
           email: val("email"),
           message: val("message"),
         };
@@ -1314,10 +1395,9 @@
             );
             return;
           }
-          setEnquiryStatus(
+          showEnquiryThankYou(
             data.message ||
-              "Thank you. Your enquiry was sent. We will reply by email.",
-            "success"
+              "Thank you. We have received your enquiry and will reply to you by email soon."
           );
           document.getElementById("enquiryForm").reset();
         } catch {
