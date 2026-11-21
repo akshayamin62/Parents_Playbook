@@ -1,0 +1,24 @@
+{
+  "name": "parents-playbook-preview-api",
+  "version": "1.0.0",
+  "description": "Sends free preview PDF to users and notifies Kareer Studio",
+  "main": "server.js",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "verify-smtp": "node scripts/verify-smtp.mjs"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "nodemailer": "^6.9.16",
+    "validator": "^13.12.0"
+  }
+}

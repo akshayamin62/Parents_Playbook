@@ -1,0 +1,6 @@
+# Rename to .htaccess when uploading to shared hosting (e.g. public_html/mydreams/).
+# Blocks direct access if free-preview.pdf is accidentally uploaded.
+
+<Files "free-preview.pdf">
+  Require all denied
+</Files>

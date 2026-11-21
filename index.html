@@ -1,0 +1,1299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="My Child Goes to the Best School. Isn't That Enough? A practical parent playbook, interactive workshops and one-to-one education guidance with Makarand Bhatt."
+    />
+    <title>The Parent's Playbook | Makarand Bhatt</title>
+    <style>
+      :root {
+        --ink: #192b3d;
+        --sub: #536273;
+        --rust: #aa6245;
+        --cream: #faf8f3;
+        --sage: #e6ede6;
+        --line: #e4e0d9;
+        --blue: #e5edf3;
+        --peach: #f4e8e1;
+        --paper: #fffefa;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font:
+          17px/1.65 Calibri,
+          "Segoe UI",
+          Arial,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3,
+      .serif {
+        font-family: "Times New Roman", Georgia, serif;
+        font-weight: 400;
+        line-height: 1.13;
+      }
+      h1 {
+        font-size: clamp(43px, 5vw, 76px);
+        letter-spacing: -0.035em;
+        margin: 20px 0 22px;
+      }
+      h2 {
+        font-size: clamp(36px, 4vw, 54px);
+        letter-spacing: -0.02em;
+        margin: 0 0 22px;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 8px 0 14px;
+      }
+      p {
+        margin: 0 0 18px;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        max-width: 1160px;
+        margin: auto;
+        padding: 0 32px;
+      }
+      .top {
+        border-bottom: 1px solid var(--line);
+        background: rgba(250, 248, 243, 0.95);
+        position: sticky;
+        top: 0;
+        z-index: 4;
+        backdrop-filter: blur(12px);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 76px;
+        gap: 20px;
+      }
+      .wordmark {
+        font:
+          21px/1 "Times New Roman",
+          serif;
+        letter-spacing: 0.025em;
+      }
+      .wordmark small {
+        display: block;
+        font:
+          10px/1.7 Arial,
+          sans-serif;
+        letter-spacing: 0.22em;
+        color: var(--rust);
+        margin-top: 6px;
+      }
+      .navlinks {
+        display: flex;
+        gap: 30px;
+        font-size: 14px;
+        align-items: center;
+      }
+      .navlinks a:hover {
+        color: var(--rust);
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: var(--ink);
+        color: #fff;
+        border: 1px solid var(--ink);
+        padding: 15px 23px;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        cursor: pointer;
+        transition: 0.2s;
+        border-radius: 2px;
+      }
+      .button:hover {
+        background: #31485d;
+      }
+      .button.secondary {
+        background: transparent;
+        color: var(--ink);
+      }
+      .button.secondary:hover {
+        background: var(--blue);
+      }
+      .button.light {
+        background: #fff;
+        color: var(--ink);
+        border-color: #fff;
+      }
+      .button.small {
+        padding: 11px 17px;
+        font-size: 13px;
+      }
+      .eyebrow {
+        font-size: 12px;
+        letter-spacing: 0.19em;
+        text-transform: uppercase;
+        color: var(--rust);
+        font-weight: 700;
+      }
+      .hero {
+        padding: 85px 0 90px;
+        background:
+          radial-gradient(circle at 83% 20%, #e9e7dd 0, transparent 38%),
+          var(--cream);
+      }
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: center;
+        gap: 75px;
+      }
+      .hero .lead {
+        font-size: 20px;
+        max-width: 565px;
+        line-height: 1.65;
+        color: #334557;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 30px;
+      }
+      .micro {
+        font-size: 13px;
+        color: var(--sub);
+        margin-top: 18px;
+      }
+      .hero-art {
+        position: relative;
+        padding: 25px 33px 25px 16px;
+      }
+      .hero-art:before {
+        content: "";
+        position: absolute;
+        width: 81%;
+        height: 89%;
+        background: var(--sage);
+        right: 0;
+        top: 5%;
+        border-radius: 46% 46% 6px 6px;
+        transform: rotate(6deg);
+      }
+      .book {
+        display: block;
+        position: relative;
+        width: min(100%, 350px);
+        max-height: 530px;
+        object-fit: cover;
+        margin: auto;
+        box-shadow: 16px 20px 36px rgba(21, 35, 45, 0.18);
+        transform: rotate(-3deg);
+        border: 1px solid #d9d8d4;
+      }
+      .note {
+        position: absolute;
+        right: -10px;
+        bottom: -22px;
+        background: #fff;
+        padding: 20px 25px;
+        box-shadow: 0 10px 25px #263d4d16;
+        font:
+          italic 22px/1.3 "Times New Roman",
+          serif;
+        width: 200px;
+      }
+      .intro {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 52px 0;
+        background: var(--paper);
+      }
+      .intro-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 75px;
+      }
+      .intro .quote {
+        font:
+          italic 32px/1.24 "Times New Roman",
+          serif;
+        color: #2c4051;
+      }
+      .section {
+        padding: 105px 0;
+      }
+      .center {
+        text-align: center;
+      }
+      .center .subhead {
+        max-width: 690px;
+        margin: 0 auto 52px;
+        color: var(--sub);
+        font-size: 18px;
+      }
+      .rule {
+        width: 48px;
+        height: 2px;
+        background: var(--rust);
+        margin: 19px 0 26px;
+      }
+      .three {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 23px;
+      }
+      .feature {
+        border-top: 1px solid #b9c5c9;
+        padding-top: 20px;
+      }
+      .feature .number {
+        font:
+          32px "Times New Roman",
+          serif;
+        color: var(--rust);
+      }
+      .feature h3 {
+        font-size: 25px;
+        margin: 12px 0;
+      }
+      .feature p {
+        font-size: 15px;
+        color: #4f5d68;
+      }
+      .offers {
+        background: #edf0eb;
+      }
+      .offer {
+        background: #fff;
+        border: 1px solid #dde3df;
+        padding: 33px 27px;
+        display: flex;
+        flex-direction: column;
+        min-height: 390px;
+      }
+      .offer.featured {
+        border: 2px solid #9baea9;
+        transform: translateY(-7px);
+      }
+      .offer-tag {
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--rust);
+      }
+      .offer h3 {
+        font-size: 30px;
+        margin: 15px 0;
+      }
+      .offer p {
+        color: var(--sub);
+        font-size: 15px;
+      }
+      .offer ul {
+        padding-left: 20px;
+        color: #344b57;
+        font-size: 15px;
+        line-height: 1.9;
+        margin: 5px 0 25px;
+      }
+      .offer .bottom {
+        margin-top: auto;
+      }
+      .price {
+        font:
+          30px "Times New Roman",
+          serif;
+        margin: 0 0 15px;
+      }
+      .price small {
+        font:
+          12px Arial,
+          sans-serif;
+        color: var(--sub);
+      }
+      .offer .button {
+        width: 100%;
+      }
+      .sample {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 70px;
+        align-items: center;
+      }
+      .sample-art {
+        background: #e7ede7;
+        padding: 30px;
+        position: relative;
+      }
+      .sample-art img {
+        width: 75%;
+        box-shadow: 9px 13px 30px #0002;
+        display: block;
+        margin: auto;
+        transform: rotate(3deg);
+      }
+      .sample-art span {
+        position: absolute;
+        bottom: 12px;
+        left: 20px;
+        background: #fff;
+        padding: 8px 14px;
+        font-size: 13px;
+      }
+      .list {
+        list-style: none;
+        padding: 0;
+        margin: 22px 0 30px;
+      }
+      .list li {
+        padding: 11px 0 11px 30px;
+        border-bottom: 1px solid var(--line);
+        position: relative;
+        font-size: 16px;
+      }
+      .list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--rust);
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 36px;
+      }
+      .step {
+        border-left: 2px solid #d8c1b3;
+        padding-left: 23px;
+      }
+      .step b {
+        font:
+          40px "Times New Roman",
+          serif;
+        color: var(--rust);
+        font-weight: 400;
+      }
+      .step p {
+        font-size: 16px;
+        color: var(--sub);
+      }
+      .author-wrap {
+        background: #f3ede5;
+      }
+      .author-grid {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 82px;
+        align-items: center;
+      }
+      .portrait {
+        width: 100%;
+        aspect-ratio: 4/4.8;
+        object-fit: cover;
+        object-position: center 18%;
+        filter: saturate(0.75);
+        border: 10px solid #fff;
+        box-shadow: 0 14px 29px #1d30301b;
+      }
+      .author-grid h2 {
+        margin-bottom: 5px;
+      }
+      .role {
+        font-size: 15px;
+        color: var(--rust);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+      .faq-grid {
+        max-width: 820px;
+        margin: 50px auto 0;
+      }
+      details {
+        border-bottom: 1px solid #dcdedc;
+        padding: 19px 0;
+      }
+      summary {
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 650;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+      }
+      summary:after {
+        content: "+";
+        font-size: 25px;
+        font-weight: 400;
+        color: var(--rust);
+      }
+      details[open] summary:after {
+        content: "−";
+      }
+      details p {
+        font-size: 15px;
+        color: var(--sub);
+        margin-top: 13px;
+        max-width: 740px;
+      }
+      .closing {
+        background: var(--ink);
+        color: white;
+        padding: 85px 0;
+      }
+      .closing h2 {
+        max-width: 740px;
+      }
+      .closing p {
+        color: #d5dfe8;
+        max-width: 680px;
+      }
+      .closing .button {
+        margin-top: 18px;
+      }
+      footer {
+        background: #142333;
+        color: #c8d3de;
+        padding: 25px 0;
+        font-size: 12px;
+      }
+      .footer-flex {
+        display: flex;
+        justify-content: space-between;
+        gap: 25px;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: #10202dbb;
+        z-index: 20;
+        align-items: center;
+        justify-content: center;
+        padding: 22px;
+      }
+      .modal.open {
+        display: flex;
+      }
+      .dialog {
+        background: #fff;
+        width: min(100%, 530px);
+        padding: 35px;
+        max-height: 90vh;
+        overflow: auto;
+        box-shadow: 0 18px 50px #0004;
+      }
+      .dialog h3 {
+        font-size: 34px;
+      }
+      .x {
+        float: right;
+        background: none;
+        border: 0;
+        font-size: 27px;
+        cursor: pointer;
+      }
+      .formrow {
+        margin: 12px 0;
+      }
+      .formrow label {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        margin: 0 0 5px;
+      }
+      .formrow input,
+      .formrow select,
+      .formrow textarea {
+        width: 100%;
+        font:
+          16px Calibri,
+          Arial,
+          sans-serif;
+        padding: 11px;
+        border: 1px solid #cbd2d2;
+        border-radius: 2px;
+      }
+      .formrow textarea {
+        min-height: 88px;
+      }
+      .fine {
+        font-size: 12px;
+        color: var(--sub);
+      }
+      .formstatus {
+        font-size: 14px;
+        margin: 10px 0 4px;
+        display: none;
+      }
+      .formstatus.show {
+        display: block;
+      }
+      .formstatus.error {
+        color: #9b3d2e;
+      }
+      .formstatus.success {
+        color: #2d5a3d;
+      }
+      .formrow input:disabled,
+      .button:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+      @media (max-width: 900px) {
+        .hero-inner,
+        .intro-grid,
+        .sample,
+        .author-grid {
+          gap: 34px;
+        }
+        .hero-inner {
+          grid-template-columns: 1.1fr 0.9fr;
+        }
+        .navlinks {
+          gap: 13px;
+        }
+        .three {
+          gap: 12px;
+        }
+        .offer {
+          padding: 24px 18px;
+        }
+        .author-grid {
+          grid-template-columns: 235px 1fr;
+        }
+      }
+      @media (max-width: 700px) {
+        body {
+          font-size: 16px;
+        }
+        .container {
+          padding: 0 20px;
+        }
+        .nav {
+          min-height: 70px;
+        }
+        .navlinks a:not(.button) {
+          display: none;
+        }
+        .navlinks .button {
+          font-size: 12px;
+        }
+        .hero {
+          padding: 50px 0 65px;
+        }
+        .hero-inner,
+        .intro-grid,
+        .sample,
+        .author-grid,
+        .three,
+        .steps {
+          grid-template-columns: 1fr;
+        }
+        .hero-inner {
+          gap: 37px;
+        }
+        .hero-art {
+          max-width: 390px;
+          margin: 0 auto;
+        }
+        .hero .lead {
+          font-size: 18px;
+        }
+        .intro {
+          padding: 38px 0;
+        }
+        .intro .quote {
+          font-size: 28px;
+        }
+        .section {
+          padding: 70px 0;
+        }
+        .offer.featured {
+          transform: none;
+        }
+        .offer {
+          min-height: auto;
+        }
+        .sample-art {
+          order: 2;
+        }
+        .author-grid {
+          gap: 32px;
+        }
+        .portrait {
+          max-width: 270px;
+        }
+        .footer-flex {
+          display: block;
+        }
+        .note {
+          right: 2px;
+          font-size: 17px;
+          width: 160px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <nav class="container nav" aria-label="Main navigation">
+        <a class="wordmark" href="#top"
+          >THE PARENT'S PLAYBOOK<small>BY MAKARAND BHATT</small></a
+        >
+        <div class="navlinks">
+          <a href="#inside">Inside the book</a
+          ><a href="#options">Ways to learn</a
+          ><a href="#author">About the author</a
+          ><button type="button" class="button small" onclick="openPreview()">
+            Free preview ↗
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <div class="eyebrow">
+              A different conversation about your child's future
+            </div>
+            <h1>
+              My child goes to the best school.<br /><em>Isn’t that enough?</em>
+            </h1>
+            <div class="rule"></div>
+            <p class="lead">
+              Are we preparing our children for examinations, or preparing them
+              for life? A practical playbook to help families look beyond marks,
+              understand their child and make more thoughtful education
+              decisions.
+            </p>
+            <div class="hero-actions">
+              <button type="button" class="button" onclick="openPreview()">
+                Get the free 14-page preview ↓
+              </button><a class="button secondary" href="#options"
+                >Explore ways to learn</a
+              >
+            </div>
+            <p class="micro">
+              For parents of school-going children • Guided reading • Reflection
+              tools • Family activities
+            </p>
+          </div>
+          <div class="hero-art">
+            <img
+              class="book"
+              src="book-cover.png"
+              alt="Original cover of The Parent's Playbook by Makarand Bhatt"
+            />
+            <div class="note">Less pressure.<br />Better questions.</div>
+          </div>
+        </div>
+      </section>
+      <section class="intro">
+        <div class="container intro-grid">
+          <div class="quote">
+            “Marks tell us something valuable about achievement. They do not
+            tell us everything about the child.”
+          </div>
+          <div>
+            <div class="eyebrow">The central idea</div>
+            <p>
+              Choosing a good school is important. But schooling and planning a
+              child's education are not quite the same thing. Children need
+              space to discover their interests, practise decisions, learn from
+              setbacks and develop confidence in their own voice.
+            </p>
+            <p>
+              This playbook is designed to turn those concerns into honest
+              family conversations and practical next steps, without demanding
+              that a child choose a career too early.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="inside">
+        <div class="container">
+          <div class="eyebrow center">What the playbook makes possible</div>
+          <h2 class="center">Understand first. Decide better.</h2>
+          <p class="center subhead">
+            A structured way to slow down, listen and prepare for the education
+            decisions that matter.
+          </p>
+          <div class="three">
+            <div class="feature">
+              <div class="number">01</div>
+              <h3>See beyond the report card</h3>
+              <p>
+                Observe curiosity, learning habits, personal strengths and how
+                your child responds to challenges.
+              </p>
+            </div>
+            <div class="feature">
+              <div class="number">02</div>
+              <h3>Talk without turning it into pressure</h3>
+              <p>
+                Use parent and child worksheets to discover where your
+                expectations meet or differ.
+              </p>
+            </div>
+            <div class="feature">
+              <div class="number">03</div>
+              <h3>Take a practical next step</h3>
+              <p>
+                Use reflection audits, decision templates and seven-day action
+                activities instead of making rushed assumptions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section offers" id="options">
+        <div class="container">
+          <div class="eyebrow center">Choose the level of support you need</div>
+          <h2 class="center">Three ways to begin</h2>
+          <p class="center subhead">
+            Start independently with the book, learn in a group, or explore a
+            personal conversation about your family’s situation.
+          </p>
+          <div class="three">
+            <article class="offer">
+              <div class="offer-tag">01 / Independent learning</div>
+              <h3>The digital playbook</h3>
+              <p>
+                Read at your own pace, complete the exercises, and start
+                meaningful conversations at home.
+              </p>
+              <ul>
+                <li>Complete digital book</li>
+                <li>Reflection audits and worksheets</li>
+                <li>Parent-child discussion prompts</li>
+                <li>Practical action trackers</li>
+              </ul>
+              <div class="bottom">
+                <div class="price">
+                  ₹399 <small>proposed digital price</small>
+                </div>
+                <button
+                  class="button secondary"
+                  onclick="openEnquiry('Digital playbook')"
+                >
+                  Request purchase details ↗
+                </button>
+              </div>
+            </article>
+            <article class="offer featured">
+              <div class="offer-tag">02 / Guided group learning</div>
+              <h3>Interactive parent workshop</h3>
+              <p>
+                Work through selected ideas with Makarand Bhatt and other
+                parents in a facilitated session.
+              </p>
+              <ul>
+                <li>Selected playbook themes</li>
+                <li>Reflective exercises</li>
+                <li>Live questions and discussion</li>
+                <li>Take-home action plan</li>
+              </ul>
+              <div class="bottom">
+                <div class="price">Schedule on request</div>
+                <button class="button" onclick="openEnquiry('Parent workshop')">
+                  Enquire about workshops ↗
+                </button>
+              </div>
+            </article>
+            <article class="offer">
+              <div class="offer-tag">03 / Personal guidance</div>
+              <h3>One-to-one interactive session</h3>
+              <p>
+                A focused conversation around your child's needs, your concerns
+                and the decisions your family is considering.
+              </p>
+              <ul>
+                <li>Understand your current concerns</li>
+                <li>Discuss parent-child expectations</li>
+                <li>Identify questions worth exploring</li>
+                <li>Define practical next actions</li>
+              </ul>
+              <div class="bottom">
+                <div class="price">By appointment</div>
+                <button
+                  class="button secondary"
+                  onclick="openEnquiry('One-to-one interactive session')"
+                >
+                  Request a personal session ↗
+                </button>
+              </div>
+            </article>
+          </div>
+          <p class="micro center" style="margin-top: 26px">
+            Workshop dates, fees, duration and one-to-one availability are
+            confirmed individually. No payment or booking is processed on this
+            demo page.
+          </p>
+        </div>
+      </section>
+      <section class="section" id="free-preview">
+        <div class="container sample">
+          <div>
+            <div class="eyebrow">Try it before you decide</div>
+            <h2>A free preview you can actually use.</h2>
+            <p>
+              Explore 14 pages selected for parents to read, reflect and discuss
+              together. Share your details and we will email the PDF — there is
+              no direct download on this page.
+            </p>
+            <ul class="list">
+              <li>Real reading excerpts from the playbook</li>
+              <li>Parent Awareness Audit</li>
+              <li>Parent-child reflection and conversation</li>
+              <li>A simple seven-day family action tracker</li>
+            </ul>
+            <button type="button" class="button" onclick="openPreview()">
+              Request the free preview ↓
+            </button>
+          </div>
+          <div class="sample-art">
+            <img src="book-cover.png" alt="The Parent's Playbook cover" /><span
+              >14-page review edition · PDF</span
+            >
+          </div>
+        </div>
+      </section>
+      <section class="section" style="background: #fffefa">
+        <div class="container">
+          <div class="eyebrow center">How to use it</div>
+          <h2 class="center">Small conversations. Meaningful progress.</h2>
+          <div class="steps">
+            <div class="step">
+              <b>01</b>
+              <h3>Read and reflect</h3>
+              <p>
+                Begin with your own assumptions, expectations and questions.
+                Complete the relevant parent exercises honestly.
+              </p>
+            </div>
+            <div class="step">
+              <b>02</b>
+              <h3>Invite your child’s voice</h3>
+              <p>
+                Let your child complete their own reflections without pressure,
+                comparison or the need for a final career answer.
+              </p>
+            </div>
+            <div class="step">
+              <b>03</b>
+              <h3>Agree on one action</h3>
+              <p>
+                Identify an achievable next step, from exploring an interest to
+                having a better discussion with a teacher.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section author-wrap" id="author">
+        <div class="container author-grid">
+          <img
+            class="portrait"
+            src="author.webp"
+            alt="Makarand Bhatt, Education and Career Strategist"
+          />
+          <div>
+            <div class="eyebrow">Meet the author and facilitator</div>
+            <h2>Makarand Bhatt</h2>
+            <div class="role">Education &amp; Career Strategist</div>
+            <p>
+              Makarand works with students and families on education and career
+              planning, including the development of strengths, interests,
+              academic profiles and long-term pathways.
+            </p>
+            <p>
+              His approach encourages thoughtful decisions backed by evidence,
+              honest conversation and consistent action, rather than choosing a
+              direction simply because it is fashionable or familiar.
+            </p>
+            <p class="serif" style="font-size: 25px; font-style: italic">
+              “Education planning should help children understand who they are
+              becoming.”
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="eyebrow center">Common questions</div>
+          <h2 class="center">A few things parents ask</h2>
+          <div class="faq-grid">
+            <details>
+              <summary>Who is this playbook intended for?</summary>
+              <p>
+                It is written for parents and caregivers supporting school-going
+                children, particularly those preparing for subject, stream and
+                future education decisions. Activities can be adapted to the
+                child's age and readiness.
+              </p>
+            </details>
+            <details>
+              <summary>Does the playbook predict my child’s career?</summary>
+              <p>
+                No. It is an educational reflection and family discussion tool,
+                not a standardised psychological test, clinical diagnosis or
+                career predictor.
+              </p>
+            </details>
+            <details>
+              <summary>Can I use it without attending a workshop?</summary>
+              <p>
+                Yes. The book is designed for independent use. The workshop
+                offers guided discussion and help interpreting the exercises in
+                everyday family life.
+              </p>
+            </details>
+            <details>
+              <summary>What happens in a one-to-one session?</summary>
+              <p>
+                It starts with your family's concerns and current
+                decision-making challenges. The specific scope, duration and fee
+                are discussed before an appointment is confirmed.
+              </p>
+            </details>
+            <details>
+              <summary>How do I receive the complete playbook?</summary>
+              <p>
+                Use the purchase-details enquiry button to request the current
+                purchase and fulfilment information. Online checkout has not yet
+                been configured in this demonstration page.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+      <section class="closing">
+        <div class="container">
+          <div class="eyebrow" style="color: #e5b49a">
+            The first step starts at home
+          </div>
+          <h2>
+            Before asking what your child should become, ask what your child is
+            discovering.
+          </h2>
+          <p>
+            Begin with the free preview, explore the complete playbook, or start
+            a guided conversation.
+          </p>
+          <button type="button" class="button light" onclick="openPreview()">
+            Email me the free preview ↓
+          </button>
+          <button
+            class="button secondary"
+            style="color: #fff; border-color: #91a0ae"
+            onclick="openEnquiry('General enquiry')"
+          >
+            Talk about the next step ↗
+          </button>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container footer-flex">
+        <div>
+          © <span id="yr"></span> Makarand Bhatt · The Parent's Playbook
+        </div>
+        <div>
+          Educational guidance, not a substitute for individual psychological
+          assessment. · <a href="mailto:hello@kareerstudio.com">Contact</a>
+        </div>
+      </div>
+    </footer>
+    <div
+      class="modal"
+      id="previewModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="previewTitle"
+    >
+      <div class="dialog">
+        <button class="x" onclick="closePreview()" aria-label="Close">×</button>
+        <div class="eyebrow">14-page review edition</div>
+        <h3 id="previewTitle">Get your free preview</h3>
+        <p style="font-size: 14px; color: var(--sub)">
+          Enter your details below. We will email the free preview PDF to your
+          inbox — usually within a few minutes. Please check spam if you do not
+          see it.
+        </p>
+        <form id="previewForm">
+          <div class="formrow">
+            <label for="previewName">Your name</label>
+            <input
+              id="previewName"
+              required
+              autocomplete="name"
+              maxlength="100"
+            />
+          </div>
+          <div class="formrow">
+            <label for="previewPhone">Mobile number</label>
+            <input
+              id="previewPhone"
+              type="tel"
+              required
+              autocomplete="tel"
+              maxlength="20"
+              placeholder="e.g. +91 98765 43210"
+            />
+          </div>
+          <div class="formrow">
+            <label for="previewEmail">Your email</label>
+            <input
+              id="previewEmail"
+              type="email"
+              required
+              autocomplete="email"
+            />
+          </div>
+          <div class="formrow">
+            <label for="previewCity">City</label>
+            <input
+              id="previewCity"
+              required
+              autocomplete="address-level2"
+              maxlength="80"
+            />
+          </div>
+          <p
+            id="previewStatus"
+            class="formstatus"
+            role="status"
+            aria-live="polite"
+          ></p>
+          <button type="submit" id="previewSubmit" class="button" style="width: 100%">
+            Email me the free preview ↗
+          </button>
+        </form>
+        <p class="fine" style="margin-top: 12px">
+          We use your details to send the preview and may follow up about the
+          playbook. See our contact page for questions.
+        </p>
+      </div>
+    </div>
+    <div
+      class="modal"
+      id="enquiry"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dialogTitle"
+    >
+      <div class="dialog">
+        <button class="x" onclick="closeEnquiry()" aria-label="Close">×</button>
+        <div class="eyebrow">Contact the author’s team</div>
+        <h3 id="dialogTitle">Make an enquiry</h3>
+        <p style="font-size: 14px; color: var(--sub)">
+          Tell us what you are looking for. We will receive your enquiry by email
+          and reply to you directly.
+        </p>
+        <form id="enquiryForm">
+          <div class="formrow">
+            <label for="interest">I’m interested in</label
+            ><select id="interest" required>
+              <option>Digital playbook</option>
+              <option>Parent workshop</option>
+              <option>One-to-one interactive session</option>
+              <option>General enquiry</option>
+            </select>
+          </div>
+          <div class="formrow">
+            <label for="name">Your name</label
+            ><input id="name" required autocomplete="name" maxlength="100" />
+          </div>
+          <div class="formrow">
+            <label for="email">Your email</label
+            ><input id="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="formrow">
+            <label for="message"
+              >What would you like to explore? (optional)</label
+            ><textarea
+              id="message"
+              maxlength="800"
+              placeholder="For example: my child is in Class 9 and we are considering subject choices."
+            ></textarea>
+          </div>
+          <p
+            id="enquiryStatus"
+            class="formstatus"
+            role="status"
+            aria-live="polite"
+          ></p>
+          <button
+            type="submit"
+            id="enquirySubmit"
+            class="button"
+            style="width: 100%"
+          >
+            Send enquiry ↗
+          </button>
+        </form>
+      </div>
+    </div>
+    <script>
+      const PLAYBOOK_API_BASE =
+        location.hostname === "localhost" || location.hostname === "127.0.0.1"
+          ? "http://localhost:3847"
+          : "https://api.kareerstudio.com";
+
+      document.getElementById("yr").textContent = new Date().getFullYear();
+
+      function openPreview() {
+        closeEnquiry();
+        document.getElementById("previewModal").classList.add("open");
+        clearPreviewStatus();
+        document.getElementById("previewName").focus();
+      }
+      function closePreview() {
+        document.getElementById("previewModal").classList.remove("open");
+      }
+      function clearPreviewStatus() {
+        const el = document.getElementById("previewStatus");
+        el.textContent = "";
+        el.className = "formstatus";
+      }
+      function setPreviewStatus(message, type) {
+        const el = document.getElementById("previewStatus");
+        el.textContent = message;
+        el.className = `formstatus show ${type}`;
+      }
+
+      document.getElementById("previewModal").addEventListener("click", (e) => {
+        if (e.target.id === "previewModal") closePreview();
+      });
+      document.getElementById("previewForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById("previewSubmit");
+        const val = (id) => document.getElementById(id).value.trim();
+        const payload = {
+          name: val("previewName"),
+          email: val("previewEmail"),
+          phone: val("previewPhone"),
+          city: val("previewCity"),
+        };
+        submitBtn.disabled = true;
+        clearPreviewStatus();
+        try {
+          const res = await fetch(`${PLAYBOOK_API_BASE}/free-preview`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) {
+            setPreviewStatus(data.error || "Something went wrong. Please try again.", "error");
+            return;
+          }
+          setPreviewStatus(
+            data.message || "Preview sent. Please check your inbox.",
+            "success"
+          );
+          document.getElementById("previewForm").reset();
+        } catch {
+          setPreviewStatus(
+            "Could not reach the server. Check your connection or try again later.",
+            "error"
+          );
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+
+      function openEnquiry(item) {
+        closePreview();
+        clearEnquiryStatus();
+        document.getElementById("interest").value = item;
+        document.getElementById("enquiry").classList.add("open");
+        document.getElementById("name").focus();
+      }
+      function closeEnquiry() {
+        document.getElementById("enquiry").classList.remove("open");
+      }
+      function clearEnquiryStatus() {
+        const el = document.getElementById("enquiryStatus");
+        el.textContent = "";
+        el.className = "formstatus";
+      }
+      function setEnquiryStatus(message, type) {
+        const el = document.getElementById("enquiryStatus");
+        el.textContent = message;
+        el.className = `formstatus show ${type}`;
+      }
+      document.getElementById("enquiry").addEventListener("click", (e) => {
+        if (e.target.id === "enquiry") closeEnquiry();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closePreview();
+          closeEnquiry();
+        }
+      });
+      document.getElementById("enquiryForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById("enquirySubmit");
+        const val = (id) => document.getElementById(id).value.trim();
+        const payload = {
+          interest: val("interest"),
+          name: val("name"),
+          email: val("email"),
+          message: val("message"),
+        };
+        submitBtn.disabled = true;
+        clearEnquiryStatus();
+        try {
+          const res = await fetch(`${PLAYBOOK_API_BASE}/enquiry`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) {
+            setEnquiryStatus(
+              data.error || "Something went wrong. Please try again.",
+              "error"
+            );
+            return;
+          }
+          setEnquiryStatus(
+            data.message ||
+              "Thank you. Your enquiry was sent. We will reply by email.",
+            "success"
+          );
+          document.getElementById("enquiryForm").reset();
+        } catch {
+          setEnquiryStatus(
+            "Could not reach the server. Check your connection or try again later.",
+            "error"
+          );
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>
