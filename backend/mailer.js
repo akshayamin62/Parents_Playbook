@@ -72,7 +72,7 @@ export async function sendPreviewEmails({ name, email, phone, city }) {
       `Hello ${name},`,
       "",
       "Thank you for your interest in The Parent's Playbook.",
-      "Your 14-page free preview is attached to this email.",
+      "Your free preview is attached to this email.",
       "",
       `If you have questions, reply to this message or write to ${contactEmail}.`,
       "",
